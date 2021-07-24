@@ -1,0 +1,631 @@
+<!DOCTYPE html>                                           <!--        MEAL PLANNER  -->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Meal Plans</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{url_for('static',filename='nucleo.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>                                                       <!-- FOR CHART.JS   -->
+  <link rel="stylesheet" href="{{url_for('static',filename='all.min.css')}}" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="{{url_for('static',filename='argon_final.css')}}" type="text/css">
+
+  <!--  NEW ICONS  -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{url_for('static',filename='pe-icon-7-stroke.css')}}" rel="stylesheet" />
+
+
+
+
+
+<!--                   css for mealplan             -->
+<style>
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  width: 25%;
+
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+
+
+<!--                        style for Table             -->
+
+<style>
+td{
+  width: 12.5% !important;
+  position: relative;
+  padding: 2px 2px 2px 2px !important;
+}
+td:after {
+  
+  display: block !important;
+  margin-top: 100%;
+}
+td #content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: blue;
+}
+
+
+
+
+
+</style>
+
+
+
+
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner">
+      <!-- Brand -->
+      <div class="sidenav-header  align-items-center" style="margin-left: -20px; margin-right: -20px; margin-top: 40px; margin-bottom: 0px;">
+        <a class="" href="javascript:void(0)" >
+          <img src="{{url_for('static',filename='logo1.jpeg')}}" class="" alt="..."  >                                         <!-- LOGO     -->
+        </a>
+      </div>
+      <div class="navbar-inner">
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <!-- Nav items -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">
+                <i class="pe-7s-graph text-primary" style="font-size:20px"></i>
+
+                <span class="nav-link-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/progress">
+                <i class="pe-7s-graph1 text-green" style="font-size:20px"></i>
+
+                <span class="nav-link-text">Your Progress</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/calculate">
+                <i class="pe-7s-calculator text-orange" style="font-size:20px"></i>
+                <span class="nav-link-text">Calculators</span>
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link active" href="/mealplan">
+                <i class="pe-7s-note2 text-primary" style="font-size:20px"></i>
+                <span class="nav-link-text">Meal Plans</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/recipe">
+                <i class="pe-7s-news-paper text-yellow" style="font-size:20px"></i>
+                <span class="nav-link-text">Discover Recipes</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/editormaker">
+                <i class="pe-7s-news-paper text-default" style="font-size:20px"></i>
+                <span class="nav-link-text">Recipes Maker</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/myrecipes">
+                <i class="pe-7s-ribbon text-orange" style="font-size:20px"></i>
+                <span class="nav-link-text">My Recipes</span>
+              </a>
+            </li>
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="examples/login.html">
+                <i class="ni ni-key-25 text-info"></i>
+                <span class="nav-link-text">Login</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="examples/register.html">
+                <i class="ni ni-circle-08 text-pink"></i>
+                <span class="nav-link-text">Register</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="examples/upgrade.html">
+                <i class="ni ni-send text-dark"></i>
+                <span class="nav-link-text">Upgrade</span>
+              </a>
+            </li>-->
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+
+          <!-- Search form -->
+          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative input-group-merge">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search" type="text">
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </form>
+
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-center  ml-md-auto">
+            <li class="nav-item d-xl-none">
+              <!-- Sidenav toggler -->
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main" style="margin-right: 200px;">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item d-sm-none">
+              <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                <i class="ni ni-zoom-split-in"></i>
+              </a>
+            </li>
+            
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            <li class="nav-item" >
+              
+
+                <button type="button" class="btn btn-block btn-primary btn-sm mb-3" data-toggle="modal" data-target="#modal-default" style="padding: 5px 5px 5px 5px; ">View Meal Plan</button>
+                <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+                  <div class="modal-dialog modal- modal-dialog-centered modal-" role="document" style="width: 1200px;">
+                    <div class="modal-content">
+          
+                      <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default">Meal Plan</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+            
+                      <div class="modal-body" >
+              
+
+
+
+
+
+
+
+
+
+                        
+
+ <!-- plan card                          --> 
+
+                    <div class="col-md-12">
+                        <div class="card ">
+                            
+
+
+                            <div class="tab">
+                              <button class="tablinks" onclick="openTab(event, 'Week 1')" id="defaultOpen"><i>Week 1</i></button>
+                              <button class="tablinks" onclick="openTab(event, 'Week 2')"><i>Week 2</i></button>
+                              <button class="tablinks" onclick="openTab(event, 'Week 3')"><i>Week 3</i></button>
+                              <button class="tablinks" onclick="openTab(event, 'Week 4')"><i>Week 4</i></button>
+                            </div>
+
+                          
+                          <div id="Week 1" class="tabcontent">
+                            {% block content7 %}{% endblock %}
+                              
+
+                                
+ 
+
+
+
+                            <script>
+                            function openTab(evt, cityName) {
+                              var i, tabcontent, tablinks;
+                              tabcontent = document.getElementsByClassName("tabcontent");
+                              for (i = 0; i < tabcontent.length; i++) {
+                                tabcontent[i].style.display = "none";
+                              }
+                              tablinks = document.getElementsByClassName("tablinks");
+                              for (i = 0; i < tablinks.length; i++) {
+                                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                              }
+                              document.getElementById(cityName).style.display = "block";
+                              evt.currentTarget.className += " active";
+                            }
+
+                            // Get the element with id="defaultOpen" and click on it
+                            document.getElementById("defaultOpen").click();
+                            </script>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+<!---------------------------------------------------------------------------------------------->
+
+                    </div>
+
+                
+
+<script>
+    $(document).ready(function(){
+        $("#A").on("input",function(e){
+            $("#datalist").empty();
+            $.ajax({
+                method:"post",
+                url:"/livesearch",
+                data:{text:$("#A").val()},
+                success:function(res){
+                    var data = "<ul>";
+                    $.each(res,function(index,value){
+                        data += "<li>"+value +"</li>";
+                    });
+                    data += "</ul>";
+                    $("#datalist").html(data);
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+                      </div>
+            
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                      </div>
+            
+                    </div>
+                  </div>
+                </div>
+              
+            </li>
+            <li class="nav-item">
+
+              <a class="nav-link pr-0" href="/">
+                <div class="media align-items-center">
+                  
+                  <div class="media-body  ml-2  d-none d-lg-block">
+                    <span class="mb-0 text-sm  font-weight-bold" style="color: #777777; padding-right: 1em; padding-top: 0.8em; padding-bottom: 0.8em;
+    padding-left: 1em;
+
+    border-radius: 10rem; background-color: #fff">Logout</span>            <!-- LOG OUT HERE -->
+                  </div>
+                </div>
+              </a>
+              
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header bg-default pb-6">
+      <div class="container-fluid">
+        <div class="header-body"  style="padding-left: 15px;">
+          <div class="row align-items-center py-4">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row justify-content-center">
+        <div class=" col ">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <h3 class="mb-0">Meal Planner</h3>
+            </div>
+            <div class="card-body">
+              
+                
+
+
+
+
+
+                                        <div class="meall">
+
+                                                      <!--            HASNT BEEN MADE INTO A FORM YET       -->
+
+                                  <h2> <b>Choose your meal plan </b> </h2>
+                               <select class="form-control" name="sub" style="width: 30%;">
+                                  <option selected>Open this select menu</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                </select>
+                                <br>
+
+                                 <!-- <p>submit</p> -->
+                                 <!-- <div>
+                                     <br>
+                                     
+                                  <input type="submit" value="GO">
+
+                                 </div> -->
+                                 <!-- <input type="submit" value="GO"> -->
+
+
+
+                                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $("#check").click(function () {
+                                            if ($(this).is(":checked")) {
+                                                $("#mp").show();
+                                                $("#sub").hide();
+                                            } else {
+                                                $("#mp").hide();
+                                                $("#sub").show();
+                                            }
+
+                                        });
+                                    });
+                                </script>
+
+                          <br>
+
+                                <div id="sub" >                               <!-- HASNT BEEN MADE INTO A FORM YET SO IT DOESNT WORK  -->
+                                  <button class="btn btn-default" type="submit">Submit</button>
+                                </div> 
+
+                                                  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   -->
+
+                                <br><br>
+                                <label for="check">
+                                    
+                                    <input type="checkbox" id="check" name="check" style="margin-right: 10px;"  />Make your own Meal Plan?
+                                </label>
+
+
+
+
+                                 <br><br><br>
+                               
+                          <div id="mp" style="display: none">
+                          <form action="/mealplan/selector" method="POST" > 
+                              <div>
+                                  <h2><label for="meal">Enter your meal plan:</label></h2>
+                                  <input class="form-control" style="width: 30%;" type="text" placeholder="meal plan name" name="custom_meal" id="meal">
+                                  <!-- <button>press</button> -->
+                                  
+                              </div>   
+                              <div class="input_fields_wrap" id="lop">
+                                  
+                                  <!-- <button class="add_field_button">Add More Fields</button> 
+                                   <div>
+                                      <input type="text" name="mytext[]">
+                                  
+                                  </div> -->
+                                  <br>
+                                  <span class="inline" style="display:inline-block;"><p><h3>Day1</h3></p>
+                                  </span>
+                                  <span style="display: inline-block; margin-left:20px;"><input type="text" class="form-control" name="mytext[]" placeholder="number of meals" id="cnt1"/>
+                                  </span>
+                                  <span style="display: inline-block; margin-left:20px;">
+                                      <button class="btn btn-default btn-sm" onclick="getInputValue()" type="button">Click me</button>
+                                      <br>
+                                  </span>
+                                  <br>
+                                  <br>
+                                  
+                                  <!-- <div id="lop">
+
+                                  </div> -->
+                                <!-- <div id="lop1">
+
+                                </div>
+                                <div id="lop2">
+
+                                </div> -->
+                                  
+                              </div>
+                              <br><br>
+                              <div>
+                                      <button class="add_field_button btn btn-default btn-sm">Add More Days</button>
+
+                                  </div><br>
+                              <!-- <div>
+
+                                  <button type="submit">hey</button>
+
+                              </div> -->
+                              <br>
+
+
+
+                               <div>
+                                  <button class="btn btn-default" type="submit">Submit</button>
+                              </div> 
+                                 </div>
+
+
+                          </form>
+                          </div>
+
+
+
+
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='js.cookie.js')}}"></script>
+  <script src="{{url_for('static',filename='jquery.scrollbar.min.js')}}"></script>
+  <script src="{{url_for('static',filename='jquery-scrollLock.min.js')}}"></script>
+  <!-- Optional JS -->
+  <script src="{{url_for('static',filename='Chart.min.js')}}"></script>
+  <script src="{{url_for('static',filename='Chart.extension.js')}}"></script>
+  <!-- Argon JS -->
+  <script src="{{url_for('static',filename='argon.js')}}"></script>
+</body>
+<script>
+    var x = 1;
+    var max_fields      = 10; //maximum input boxes allowed
+    var x1 = 1;
+
+function getInputValue(){ 
+        // Selecting the input element and get its value 
+        // alert(x1)
+
+        var inputVal = document.getElementById("cnt" +x1).value;
+        x1++;
+
+        // alert(inputVal)
+        // alert(x)
+        var i;
+        // alert(inputVal)
+        for (i = 0; i < inputVal; i++) {
+                    // alert(inputVal)
+
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "text");
+        x.setAttribute("class", "form-control");
+        x.setAttribute("style", "width: 30%; display: inline;");
+        x.setAttribute("placeholder", "recipe name");
+        // x.setAttribute("id", "in"+str(i));
+        x.id="a"+i;
+        x.setAttribute("name", "mylst[]");
+        document.getElementById("lop").appendChild(x);
+        // document.getElementById("a"+i).style.marginRight = "100px";
+        document.getElementById("a"+i).style.marginLeft = "48px";
+
+
+        // Append <li> to <ul> with id="myList"
+        var y = document.createElement("INPUT");
+        y.setAttribute("type", "time");
+        y.setAttribute("class", "form-control");
+        y.setAttribute("style", "width: 10%; display: inline;");
+        y.setAttribute("placeholder", "Enter the current time");
+        y.id="b"+i;
+        y.setAttribute("name", "mylst[]");
+        document.getElementById("lop").appendChild(y);
+        // document.getElementById("b"+i).style.marginRight = "100px";
+        document.getElementById("b"+i).style.marginLeft = "48px";
+
+        }
+        // document.getElementById("a"+i).appendChild(x);     // Append <li> to <ul> with id="myList"
+
+    }
+
+    $(document).ready(function() {
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+   
+     //initlal text box count
+  
+  
+   $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; 
+            // alert(x);
+         //text box increment
+            $(wrapper).append('<div><br><span class="inline" style="display:inline-block;"><p><h3>Day'+x+'</h3></p></span> <span style="display:inline-block; margin-left:20px;"><input type="text" class="form-control" name="mytext[]" placeholder="number of meals" id="cnt'+x+'"/></span> <span style="display:inline-block; margin-left:20px;"><button onclick="getInputValue();" class="btn btn-default btn-sm" type="button">Click me</button> <span> </div>'); 
+            
+    }
+    });
+
+    // id="cnt'+x+'"
+   
+});
+
+</script>
+
+
+</html>

@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1 class = 'title'>Your Cart</h1>
+
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <h1 class = "alert alert-warning alert-dismissible display-1 text-center" style="font-size: 20px;">
+                    {{message}}
+                </h1>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+{% for i in range(count) %}
+<div class="card col-md-8" style = "background: #ffffff; padding: 10px 20px; border: 1px solid #dddddd; border-radius: 3px; margin-bottom: 20px; margin-left: 250px; ">
+    <div style="display: table;">
+        
+        <div style=" float:left;">
+            <a href="{{ url_for('book_details', id=book_results[i].id) }}"><img src="{{book_results[i].image}}"  onerror="this.onerror=null;this.src='https://cima-afrique.org/cima/images/not-available.png'; this.style='height:150px; width:200px; margin-left:-40px;';" alt="No Image Found" style = "height:150px; width:120px;"></a> 
+        </div>
+
+        <div style="margin-top: 20px; float:left; margin-left: 20px">
+            <a class = "mr-2" style="font-size: 27px;"  href={{url_for('book_details', id=book_results[i].id) }}>{{book_results[i].book_name}}</a>
+            <br><h3 style="font-size: 18px;">{{book_results[i].author}}</h3>
+        </div>
+
+        <div style='position:absolute; margin-top: 50px; float:right; right:40px; margin-bottom:80px'>
+            <h3 style="font-size: 18px; text-align:right;">Rs. {{book_results[i].price}}</h3>
+        </div>
+        <div style=' margin-top: 80px; float:right; right:50px;'>
+            <a href={{ url_for('remove_from_cart', index=i) }}><button type="button" class="btn btn-primary" style='background-color:#1CBBA1; border-width: 0;'  name="bt2">Remove from cart</button></a>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+
+{% if count != 0 %}
+    <div style="position: absolute; right:250px">
+        <h2 style = 'font-size: 28px;'>Subtotal of all books: <b>₹{{total_price}}</b></h2>
+    </div>
+    <br>
+    <br>
+    <div class='row'>
+        <div class='row col2'>
+            <a href={{url_for('empty_cart')}}><button type="submit" class="btn btn-primary" style='background-color:#1CBBA1; border-width: 0;' name="bt2">Empty the Cart</button></a>
+        </div>
+        <div class='row col2'>
+            <a href={{url_for('checkout_cart')}}><button type="submit" class="btn btn-primary" style="font-size: 24px;  border-width: 0;" name="bt2">Proceed to Buy</button></a>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock content %}

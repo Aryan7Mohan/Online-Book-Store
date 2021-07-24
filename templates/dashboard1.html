@@ -1,0 +1,106 @@
+{% extends "meal_planner.html" %}
+
+
+{% block content7 %}
+<table style="width:100%">
+          
+    <tr>
+      <th></th>
+      <th style="text-align: center;">Day1</th>   <!--style="border-left: 0.1px solid #D7D7D7;"-->
+      <th style="text-align: center;">Day2</th>
+      <th style="text-align: center;">Day3</th>
+      <th style="text-align: center;">Day4</th>
+      <th style="text-align: center;">Day5</th>
+      <th style="text-align: center;">Day6</th>
+      <th style="text-align: center;">Day7</th>
+    </tr>
+    {% for row in range(0,len) %}
+      <!-- <tr>
+        <!-- <td>{row}</td> -->
+        <!-- <td>lk</td> -->
+        
+      <!-- </tr>  -->
+      <tr style="height: 100px; border-bottom: thin solid #DCDCDC">         <!--    line -->
+      
+        <!-- /<td>{{lst1[0]}}</td> -->
+      <div>
+      <td style="width:100%; text-align: center;"><b>{{lst1[row]}}</b></td>
+      </div>
+      {% for col in range(p) %}
+
+          <!-- <td>1</td> -->
+          <!-- <td><i>Breakfast</i></td> -->
+          <!-- <td id="content"><img src="" alt="Italian Trulli" style="width:100%;"></td> -->
+          <!-- <td id="content"><img src="" alt="Italian Trulli" style="width:100%;"></td>
+          <td id="content"></td>
+          <td id="content">B_meal4</td>
+          <td id="content">B_meal5</td>
+          <td id="content">B_meal6</td>
+          <td id="content">B_meal7</td> -->
+          
+          {%for time, link in res[col+1].items() %}
+
+            {%if lst1[row][0:5]<=time <=lst1[row][6:11] %}
+             
+             
+            <!-- <td>hey</td> -->
+              <td id="content"><img src="{{link}}" alt="Italian Trulli" style="width:70%; text-align: center; padding: 5px 5px 5px 5px;" ></td>
+              <!-- <td id="content"><img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1001451_6-c8d72b8.jpg" alt="Italian Trulli" style="width:100%;"></td> -->
+
+            {%endif%}
+          {% endfor %} 
+    
+      {% endfor %}
+
+    </tr>
+    {% endfor %}
+
+    <!-- <tr>
+      <td><i>Noon Snacks</i></td>
+      <td id="content"><img src="" alt="Italian Trulli" style="width:100%;"></td>
+      <td id="content">Ns_meal2</td>
+      <td id="content">Ns_meal3</td>
+      <td id="content">Ns_meal4</td>
+      <td id="content">Ns_meal5</td>
+      <td id="content">Ns_meal6</td>
+      <td id="content">Ns_meal7</td>
+    </tr>
+    <tr>
+      <td><i>Lunch</i></td>
+      <td id="content">L_meal1</td>
+      <td id="content">L_meal2</td>
+      <td id="content">L_meal3</td>
+      <td id="content">L_meal4</td>
+      <td id="content">L_meal5</td>
+      <td id="content">L_meal6</td>
+      <td id="content">L_meal7</td>
+    </tr>
+    <tr>
+      <td><i>Evening Snacks</i></td>
+      <td id="content">Es_meal1</td>
+      <td id="content">Es_meal2</td>
+      <td id="content">Es_meal3</td>
+      <td id="content">Es_meal4</td>
+      <td id="content">Es_meal5</td>
+      <td id="content">Es_meal6</td>
+      <td id="content">Es_meal7</td>
+    </tr>
+    <tr>
+      <td><i>Dinner</i></td>
+      <td id="content">D_meal1</td>
+      <td id="content">D_meal2</td>
+      <td id="content">D_meal3</td>
+      <td id="content">D_meal4</td>
+      <td id="content">D_meal5</td>
+      <td id="content">D_meal6</td>
+      <td id="content">D_meal7</td>
+    </tr> -->
+  </table>
+
+{% endblock %}
+    
+
+
+
+
+

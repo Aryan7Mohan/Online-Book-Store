@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 class = 'title'>Search Results</h1>
+
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <h1 class = "alert alert-warning alert-dismissible display-1 text-center" style="font-size: 20px;">
+                    {{message}}
+                </h1>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+
+
+{% for i in range(count) %}
+<article class=" col-md-8" style = "background: #ffffff; padding: 10px 20px; border: 1px solid #dddddd; border-radius: 3px; margin-bottom: 20px; margin-left: 250px;">
+    <div style="display: table;">
+        <div style=" float:left;">
+            <a href={{url_for('book_details', id=book_results[i].id) }}><img src="{{book_results[i].image}}" alt="No Image Found" style = "height:150px; width:100px;"></a>
+            
+        </div>
+        <div style="margin-top: 20px; float:left; margin-left: 20px">
+            <a class = "mr-2" style="font-size: 27px;"  href={{url_for('book_details', id=book_results[i].id) }}>{{book_results[i].book_name}}</a>
+            <br><h3 style="font-size: 18px;">{{book_results[i].author}}</h3>
+        </div>
+
+    </div>
+</article>
+{% endfor %}
+
+{% endblock content %}

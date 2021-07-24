@@ -1,0 +1,156 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Login</title>
+
+  <link rel="icon" href="{{url_for('static',filename='logo_icon.png')}}" type="image/icon type">     <!-- title icon -->
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{url_for('static',filename='nucleo.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>                                                       <!-- FOR CHART.JS   -->
+  <link rel="stylesheet" href="{{url_for('static',filename='all.min.css')}}" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="{{url_for('static',filename='argon_final.css')}}" type="text/css">
+
+  <!--  NEW ICONS  -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{url_for('static',filename='pe-icon-7-stroke.css')}}" rel="stylesheet" />
+
+  <style> 
+           * {
+      font-family: sans-serif;}
+            .scroll { 
+                overflow:scroll; height:200px;
+                overflow: auto; 
+
+            } 
+</style> 
+</head>
+<body>
+  <nav class="navbar navbar-top navbar-expand navbar-dark bg-success border-bottom">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+
+          <!-- Search form -->
+          <a class="nav-link" style="color: #fff;" href="#">Ubey Menya</a>
+
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-center  ml-md-auto">
+            <li class="nav-item d-xl-none">
+              <!-- Sidenav toggler -->
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main" style="margin-right: 200px;">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item d-sm-none">
+              <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                <i class="ni ni-zoom-split-in"></i>
+              </a>
+            </li>
+            
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            
+
+            <li class="nav-item" ><a class="nav-link pr-0" role="button" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link pr-0" role="button" href="/signup">Sign Up</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-success border-bottom">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+<br><br><br>
+       
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Page content -->
+    <div class="container-fluid mt--6" style="margin-left: 470px;">
+      <div class="row">
+        <div class="col">
+          <div class="card" style="width: 40%;">
+            <!-- Card header -->
+            <div class="card-header border-0">
+              <h3 class="mb-0">Login</h3>
+            </div>
+            
+
+            <div class="col-md-8">
+              {% with messages=get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category,message in messages %}
+                    <div class="alert alert-{{ category }}">
+                      {{message}}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              {% block content %}{% endblock %}
+            </div>
+
+<form class="form-signin" method="POST" action="/login" style="padding: 20px 20px 20px 20px;">
+        <h2 class="form-signin-heading" style="">Ubey Menya Sign-In</h2>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.username.label(class="form-control-label") }}
+          {% if form.username.errors %}
+              {{ form.username(class="form-control form-control-lg is-invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in form.username.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+              
+          {% else %}
+              {{ form.username(class="form-control form-control-lg") }}
+          {% endif %}
+      </div>
+      <div class="form-group">
+          {{ form.password.label(class="form-control-label") }}
+          {% if form.password.errors %}
+              {{ form.password(class="form-control form-control-lg is-invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in form.password.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+          {% else %}
+              {{ form.password(class="form-control form-control-lg") }}
+          {% endif %}
+      </div>
+        {{ wtf.form_field(form.remember) }}
+        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+      </form>
+
+
+
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</body>
+</html>

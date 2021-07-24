@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="Featured">
+    <div class="small-container">
+  
+      <div class="title">
+        <h2>Checkout Form</h2>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3>Submit this form to complete checkout!</h3>
+      </div>
+      
+      <div class="row">
+  
+  
+        <div class="col">
+  
+  
+          <form action="/post_checkout" method="POST" enctype="multipart/form-data">   
+  
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+          <label style="padding-right: 20px; display: inline;"><b>Name: </b></label>
+          <input type="text" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" name="customer_name">
+  
+          <br>
+          
+          <label style="padding-right: 20px; display: inline;"><b>Contact Number: </b></label>
+          <input type="text" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" name="customer_number">
+  
+          <br>
+  
+          <label style="padding-right: 20px; display: inline;"><b>Address: </b></label>
+          <input type="text" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" name="customer_address">
+  
+          
+        <br>
+  
+      <button type="submit" class="btn btn-primary" name="bt2">Submit Form</button>
+  
+        </form>
+  
+    
+        </div>
+   
+        
+      </div>  <!--row-->
+  
+  
+  
+    </div><!--small-container-->
+  
+  </div><!--Featured-->
+
+{% endblock content %}

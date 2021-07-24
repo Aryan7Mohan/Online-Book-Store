@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Ubey Menya</title>
+
+  <link rel="icon" href="{{url_for('static',filename='logo_icon.png')}}" type="image/icon type">     <!-- title icon -->
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{url_for('static',filename='nucleo.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>                                                       <!-- FOR CHART.JS   -->
+  <link rel="stylesheet" href="{{url_for('static',filename='all.min.css')}}" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="{{url_for('static',filename='argon_final.css')}}" type="text/css">
+
+  <!--  NEW ICONS  -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{url_for('static',filename='pe-icon-7-stroke.css')}}" rel="stylesheet" />
+
+  <style> 
+           * {
+      font-family: sans-serif;}
+            
+
+      .bg-image {
+  /* The image used */
+  background-image: url("https://images.squarespace-cdn.com/content/v1/5663c205e4b0672d144c6799/1577335206821-27KGWJFF2YZSD6MX4T9J/ke17ZwdGBToddI8pDm48kABN3vB_0bEvEPm-IusWBsQUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcF22Nbc0PAgjcOyjmIo0RjHRapPb_PyOjxdY5HhI-ctF_E73EgaBX71cTrbaAaPjB/reading.jpg?format=2500w");
+  
+  /* Add the blur effect */
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+
+  /* Full height */
+  height: 100%; 
+  
+  color: white;
+  
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  width: 100%;
+  
+  text-align: center;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+</style> 
+</head>
+<body>
+
+  <nav class="navbar navbar-top navbar-expand navbar-dark bg-success border-bottom">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+
+          <!-- Search form -->
+          <a class="nav-link" style="color: #fff; font-size: 25px; " href="#">Ubey Menya</a>
+
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-center  ml-md-auto">
+            <li class="nav-item d-xl-none">
+              <!-- Sidenav toggler -->
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main" style="margin-right: 200px;">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item d-sm-none">
+              <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                <i class="ni ni-zoom-split-in"></i>
+              </a>
+            </li>
+            
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            
+
+            <li class="nav-item" ><a class="nav-link pr-0" role="button" href="/login">Login</a></li>
+            <li class="nav-item"><a class="nav-link pr-0" role="button" href="/signup">Sign Up</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="card-body" style="text-align: center; margin-top: 150px;">
+
+      <div class="starter-template" style="color: #fff;">
+        <h1  style="color: #fff;">Welcome to Ubey Menya!</h1>
+        <p class="lead">User Login and Sign up are in the navigation bar above.<br> New user? Sign up right now using the option.</p>
+      </div>
+
+
+        <div class="bg-image"></div>
+
+    </div><!-- /.container -->
+</body>
+<!-- Argon Scripts -->
+
+  <!-- Core -->
+   <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='js.cookie.js')}}"></script>
+  <script src="{{url_for('static',filename='jquery.scrollbar.min.js')}}"></script>
+  <script src="{{url_for('static',filename='jquery-scrollLock.min.js')}}"></script>
+  <!-- Optional JS -->
+  <script src="{{url_for('static',filename='Chart.min.js')}}"></script>
+  <script src="{{url_for('static',filename='Chart.extension.js')}}"></script>
+  <!-- Argon JS -->
+  <script src="{{url_for('static',filename='argon.js')}}"></script>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>                                               <!-- CALCULATORS -->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="pragma" content="no-cache" />
+
+  <title>Calculators</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{url_for('static',filename='nucleo.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>                                                       <!-- FOR CHART.JS   -->
+  <link rel="stylesheet" href="{{url_for('static',filename='all.min.css')}}" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="{{url_for('static',filename='argon_final.css')}}" type="text/css">
+
+  <!--  NEW ICONS  -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{url_for('static',filename='pe-icon-7-stroke.css')}}" rel="stylesheet" />
+
+<style type="text/css">
+* {
+      font-family: sans-serif;}
+
+      #myprofile:hover,#logout:hover {
+  background-color: #516DC5 !important;
+  color: #fff !important;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+.active2{
+  border-radius: 10px;
+  margin:0 30px;
+  background-color: #B9A2E0;
+  opacity: 80%
+}
+
+
+
+</style>
+    
+      <script src="{{url_for('static',filename='cal_script.js')}}" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='cal_css_final.css')}}">
+
+
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner">
+      <!-- Brand -->
+      <div class="sidenav-header  align-items-center" style="margin-left: -20px; margin-right: -20px; margin-top: 40px; margin-bottom: 0px;">
+        <a class="" href="javascript:void(0)" >
+          <img src="{{url_for('static',filename='logo1.jpeg')}}" class="" alt="..."  >                                         <!-- LOGO     -->
+        </a>
+      </div>
+      <div class="navbar-inner">
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <!-- Nav items -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">
+                <i class="pe-7s-graph text-primary" style="font-size:20px"></i>
+
+                <span class="nav-link-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/progress">
+                <i class="pe-7s-graph1 text-green" style="font-size:20px"></i>
+
+                <span class="nav-link-text">Your Progress</span>
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link active" href="/calculate">
+                <i class="pe-7s-calculator text-orange" style="font-size:20px"></i>
+                <span class="nav-link-text">Calculators</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/mealplan">
+                <i class="pe-7s-note2 text-primary" style="font-size:20px"></i>
+                <span class="nav-link-text">Meal Plans</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/recipe">
+                <i class="pe-7s-news-paper text-yellow" style="font-size:20px"></i>
+                <span class="nav-link-text">Discover Recipes</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/editormaker">
+                <i class="pe-7s-news-paper text-default" style="font-size:20px"></i>
+                <span class="nav-link-text">Recipes Maker</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/myrecipes">
+                <i class="pe-7s-ribbon text-orange" style="font-size:20px"></i>
+                <span class="nav-link-text">My Recipes</span>
+              </a>
+            </li>
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="examples/login.html">
+                <i class="ni ni-key-25 text-info"></i>
+                <span class="nav-link-text">Login</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="examples/register.html">
+                <i class="ni ni-circle-08 text-pink"></i>
+                <span class="nav-link-text">Register</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="examples/upgrade.html">
+                <i class="ni ni-send text-dark"></i>
+                <span class="nav-link-text">Upgrade</span>
+              </a>
+            </li>-->
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+
+          <!-- Search form -->
+          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+            <div class="form-group mb-0" >
+              <div class="input-group input-group-alternative input-group-merge" >
+                <div class="input-group-prepend" >
+                  <span class="input-group-text" ><i class="fa fa-search"></i></span>
+                </div>
+                <input style="margin-top: 0px;" class="form-control" placeholder="Search" type="text">
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </form>
+
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-center  ml-md-auto">
+            <li class="nav-item d-xl-none">
+              <!-- Sidenav toggler -->
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main" style="margin-right: 200px;">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item d-sm-none">
+              <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                <i class="ni ni-zoom-split-in"></i>
+              </a>
+            </li>
+            
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            
+<!--                      Profile                -->
+
+            <li class="nav-item dropdown">
+              <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="media align-items-center">
+                  
+                    
+                  
+                  <div class="media-body  ml-2  d-none d-lg-block">
+                    <span class="mb-0 text-sm  font-weight-bold" id="myprofile" style="color: #777777; padding-right: 1em; padding-top: 0.8em; padding-bottom: 0.8em;padding-left: 1em;border-radius: 10rem; background-color: #fff; transition: 0.3s;">My Profile</span>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-menu  dropdown-menu-right " style="margin-top: 10px; width: 300px;">
+                <div class="dropdown-header noti-title">
+                  <h6 class="text-overflow m-0">Your current details:</h6>
+                </div>
+                <div class="dropdown-item">
+                  <i class="pe-7s-timer" style="font-size: 22px; color: #F9B38F;"></i>
+                  <span style="font-size: 15px;">Weight:&nbsp;{{wn[0]}}</span>
+                </div>
+                <div class="dropdown-item">
+                  <i class="pe-7s-user" style="font-size: 22px; color: #C16D87;"></i>
+                  <span style="font-size: 15px;">Height:&nbsp;{{wn[2]}}</span>
+                </div>
+                <div class="dropdown-item">
+                  <i class="pe-7s-star" style="font-size: 22px; color: #335E81;"></i>
+                  <span style="font-size: 15px;">BMI:&nbsp;{{wn[1]}}</span>
+                </div>
+                
+                <div class="dropdown-divider" style="font-size: 15px;"></div>
+                <a href="/calculate" class="dropdown-item">
+                  <i class="pe-7s-info" style="font-size: 20px;"></i>
+                  <span>User calculator to update details!</span>
+                </a>
+              </div>
+            </li>
+
+
+<!--         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~        -->
+
+
+            <li class="nav-item dropdown">
+
+              <a class="nav-link pr-0" href="/" >
+                <div class="media align-items-center">
+                  
+                  <div class="media-body  ml-2  d-none d-lg-block">
+                    <span class="mb-0 text-sm  font-weight-bold" id="logout" style="color: #777777; padding-right: 1em; padding-top: 0.8em; padding-bottom: 0.8em;
+    padding-left: 1em;
+
+    border-radius: 10rem; background-color: #fff;  transition: 0.3s;">Logout</span>           <!-- LOG OUT HERE -->
+                  </div>
+                </div>
+              </a>
+              
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body"  style="padding-left: 15px;">
+          <div class="row align-items-center py-4">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row justify-content-center">
+        <div class=" col ">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <h3 class="mb-0">Calculators</h3>
+            </div>
+            <div class="card-body">
+              
+                
+
+
+
+
+
+      <!-- Tab links -->
+<div class="tab" style="background-color: #FFFFFF;">
+  <button style="width: 19.67%; font-size: 20px;" class="tablinks" onclick="openTab(event, 'Calories')" id="{{active[0]}}">Calories Burned</button>
+  <button style="width: 19.67%; font-size: 20px;" class="tablinks" onclick="openTab(event, 'BMI')" id="{{active[1]}}">BMI</button>
+  <button style="width: 19.67%; font-size: 20px;" class="tablinks" onclick="openTab(event, 'Macro')" id="{{active[2]}}">Macro</button>
+  <button style="width: 19.67%; font-size: 20px;" class="tablinks" onclick="openTab(event, 'BMR')" id="{{active[3]}}">BMR</button>
+  <button style="width: 19.67%; font-size: 20px;" class="tablinks" onclick="openTab(event, 'BFP')" id="{{active[4]}}">BFP</button>
+
+</div>
+
+<!-- Tab content -->
+<div id="Calories" class="tabcontent" >
+
+
+  <div class="Calculator" id="rcorners1" style="background-color: #FFFFFF; font-family: 'Open Sans', sans-serif;">
+      <h2 style="padding-bottom: 20px;" id="heading" >Calories Burned Calculator</h2>
+      <form action="/calories" method="POST" >
+          <label><input type="checkbox" id="check" name="check" style="margin-right: 10px;"  />Store these values for dashboard?</label><br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="weight">Weight:</label>
+        <input  type="text" id="fweight" name="Weight" placeholder="" value={{w}}>
+        <label style="padding-right: 20px;"></label>
+        <select id="drop" name="option1" value={{w1}}>
+          <option value="Pounds">Pounds (lb)</option>
+          <option value="kilograms">Kilograms (Kg)</option>
+        </select></br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Height">Height:</label>
+        <input type="text2" id="fheight" name="Height" placeholder=""> cm 
+
+        <br>
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Age">Age:</label>
+        <input type="text" id="fage" name="Age" placeholder="" value="{{age}}">
+
+        <br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="activity">Activity:</label>
+        <!-- <h1>gggggggggggggggggggggggggggggggggggggggggggggggg</h1> -->
+        <select id="drop" name="activity" value={{selected_activity}}>
+          <option value="Select one option">Select one option</option>
+          <optgroup label="bicycling">
+            <option value="">bicycling, mountain, competitive, racing
+            </option>
+            <option value="">bicycling, on dirt or farm road, moderate pace
+            </option>
+            <option value="">bicycling, 14-15.9 mph, racing or leisure, fast, vigorous effort
+            </option>
+          </optgroup>
+          <optgroup label="conditioning exercise">
+            <option value="">yoga, Hatha
+            </option>
+            <option value="">video exercise workouts, TV conditioning programs (e.g., cardio-resistance), moderate effort
+            </option>
+            <option value="">upper body exercise, stationary bicycle - Airdyne (arms only) 40 rpm, moderate
+            </option>
+          </optgroup>
+          <optgroup label="dancing">
+            <option value="">ballet, modern, or jazz, general, rehearsal or class
+            </option>
+            <option value="">tap
+            </option>
+            <option value="">aerobic, step, with 10 - 12 inch step
+            </option>
+          </optgroup>
+          <optgroup label="fishing and hunting">
+            <option value="">fishing, set net, setting net and retrieving fish, general
+            </option>
+            <option value="">hunting, bow and arrow, or crossbow
+            </option>
+            <option value="">trapping game, general
+
+</option>
+          </optgroup>
+          <optgroup label="home activities">
+            <option value="">sitting, playing with child(ren), light effort, only active periods
+            </option>
+            <option value="">standing, playing with child(ren) light effort, only active periods
+            </option>
+            <option value="">walking/running, playing with child(ren), vigorous effort, only active periods
+            </option>
+          </optgroup>
+          <optgroup label="home repair">
+            <option value="">sanding floors with a power sander
+            </option>
+            <option value="">scraping and painting sailboat or powerboat
+            </option>
+            <option value="">sharpening tools
+            </option>
+          </optgroup>
+          <optgroup label="inactivity quiet/light">
+            <option value="">sitting quietly, fidgeting, general, fidgeting hands
+            </option>
+            <option value="">sleeping
+            </option>
+            <option value="">standing, fidgeting
+            </option>
+          </optgroup>
+          <optgroup label="lawn and garden">
+            <option value="">shoveling snow, by hand ( 610)
+            </option>
+            <option value="">trimming shrubs or trees, manual cutter
+            </option>
+            <option value="">weeding, cultivating garden, light-to-moderate effort
+            </option>
+          </optgroup>
+          <optgroup label="miscellaneous">
+            <option value="">sitting, reading, book, newspaper, etc.
+            </option>
+            <option value="">standing, talking in person, on the phone, computer, or text messaging, light effort
+            </option>
+            <option value="">retreat/family reunion activities involving playing games with children
+            </option>
+          </optgroup>
+          <optgroup label="music playing">
+            <option value="">guitar, classical, folk, sitting
+            </option>
+            <option value="">trombone, standing
+            </option>
+            <option value="">violin, sitting
+            </option>
+          </optgroup>
+          <optgroup label="occupation">
+            <option value="active workstation, treadmill desk, walking">active workstation, treadmill desk, walking</option>
+            <option value="">airline flight attendant
+            </option>
+            <option value="">bakery, general, moderate effort
+            </option>
+          </optgroup>
+        </select>
+				<br><br>
+
+          
+        <!-- </select> -->
+        <br><br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="gender">Gender:</b></label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="male">Male</label>  
+        
+        <input type="radio" id="female" name="gender" value="Female">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="female">Female</label><br>
+
+        <br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="duration">Duration:</b></label>
+
+        <input type="text" id="fduration" name="Duration1" placeholder="" value={{Duration1}}> Minutes <p><span id='display'></span></p>
+        
+        
+        <button class="btn btn-primary" id="heading1" readonly type="submit" value="Calculate">Calculate</button>  
+        <p><span id='display'></span></p>     
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="outcome">Energy Burned:</label>
+        <input style="background-color: #FFFFFF; width: 15%; border: none;" type="text" id="outcome" name="outcome" placeholder="" readonly value="{{l}}"> Calories / Day
+         
+
+
+        
+      </form>
+    </div>
+
+
+</div>
+
+<div id="BMI" class="tabcontent">
+  
+
+  <div class="Calculator2" id="rcorners2" style="background-color: #FFFFFF;">
+      <h2 style="padding-bottom: 20px;" id="heading">BMI Calculator</h2>
+      <form action="/bmi" method="POST">
+          <label><input type="checkbox" id="check" name="check" style="margin-right: 10px;">Store these values for dashboard?</label><br>
+        
+        <label style="padding-right: 20px; color: black;" id="heading1" for="weight">Weight:</label>
+        <input type="text2" id="fweight" name="Weight" placeholder="">
+        <label style="padding-right: 20px;"></label>
+        <select id="drop" name="option1">
+          <option value="Pounds">Pounds (lb)</option>
+          <option value="kilograms">Kilograms (Kg)</option>
+        </select></br>
+
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Height">Height:</label>
+        <input type="text2" id="fheight" name="Height" placeholder=""> cm 
+
+        <br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Age">Age:</label>
+        <input type="text2" id="fage" name="Age" placeholder="">
+          
+          
+        <br><br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="male">Male</label>  
+        
+        <input type="radio" id="female" name="gender" value="Female">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="female">Female</label><br>
+
+        <br>
+
+        <p><button class="btn btn-primary" id="heading1" readonly type="submit" value="Calculate">Calculate</button> </p>
+        <label style="padding-right: 20px; color: black;" id="heading1" for="outcome">BMI:</label>
+        <input type="text2" style="background-color: #FFFFFF; width: 15%; text-align: center; border: none;" id="outcome" readonly name="outcome" placeholder="" value="{{sum[0]}}"> kg/m2 
+
+        <input type="text2" style="background-color: #FFFFFF; width: 20%; text-align: center; border: none;" id="outcome" readonly name="outcome" placeholder="" value=": {{sum[1]}}">
+        
+        
+      </form>
+    </div>
+
+</div>
+
+<div id="Macro" class="tabcontent">
+  
+
+  <div class="Calculator3" id="rcorners3" style="background-color: #FFFFFF;">
+      <h2 style="padding-bottom: 15px;" id="heading">Macro Calculator</h2>
+      <form action="/macro" method="POST">
+          <label><input type="checkbox" id="check" name="check" style="margin-right: 10px;">Store these values for dashboard?</label><br>
+
+          
+        <label style="padding-right: 20px; color: black;" id="heading1" for="weight">Weight:</label>
+        <input type="text3" id="fweight" name="Weight" placeholder="">
+        <label style="padding-right: 20px;"></label>
+        <select id="drop" name="option1">
+          <option value="Pounds">Pounds (lb)</option>
+          <option value="kilograms">Kilograms (Kg)</option>
+        </select></br>
+
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Height">Height:</label>
+        <input type="text3" id="fheight" name="Height" placeholder=""> cm 
+
+        <label style="padding-right: 20px;"></label>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Age">Age:</label>
+        <input type="text3" id="fage" name="Age" placeholder="">
+          
+          
+        <br><br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="male"> Male </label>  
+        
+        <input type="radio" id="female" name="gender" value="Female">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="female"> Female </label><br>
+
+        <br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="outcome">Exercise Level:</label>
+        <select id="drop" name="outcome">
+          <option value="Sedentary">Sedentary (Limited/No Exercise)</option>
+          <option value="Lightly active">Lightly active (light exercise less than three days per week)</option>
+          <option value="opp">loppppppp</option>
+          <option value="Moderately active">Moderately active (moderate exercise most days of the week)</option>
+          <option value="Very active">Very active (hard exercise every day)</option>
+          <option value="Extra active">Extra active (strenuous exercise two or more times per day)</option>
+
+
+        </select>
+
+        <br>
+        <br>
+
+
+
+        <p><button class="btn btn-primary" id="heading1" readonly type="submit" value="Calculate">Calculate</button> </p>
+
+
+   
+
+
+
+        <!--FAT-->
+        <label style="padding-right: 20px; color: black;" id="heading1" for="outcome">Fat:</label>
+        <input type="text3" id="outcome" style="background-color: #FFFFFF; width: 15%; text-align: center; border: none;" readonly name="outcome" placeholder="" value="{{o[2]}}"> Grams Per Day
+
+        
+        
+
+        <br>
+
+
+        <!--CARBS-->
+        <label style="padding-right: 20px; color: black;" id="heading1" for="outcome">Carbs:</label>
+        <input type="text3" id="outcome" style="background-color: #FFFFFF; width: 15%; text-align: center; border: none;" readonly name="outcome" placeholder="" value="{{o[1]}}"> Grams Per Day
+
+        
+
+        <br>
+
+        <!--PROTEIN-->
+        <label style="padding-right: 20px; color: black;" id="heading1" for="outcome">Protein:</label>
+        <input type="text3" id="outcome" style="background-color: #FFFFFF; width: 15%; text-align: center; border: none;" readonly name="outcome" placeholder="" value="{{o[0]}}"> Grams Per Day
+
+        <br>
+
+
+       
+      </form>
+    </div>
+</div>
+
+
+
+<div id="BMR" class="tabcontent">
+  
+
+  <div class="Calculator3" id="rcorners3" style="background-color: #FFFFFF;">
+      <h2 style="padding-bottom: 15px;" id="heading">Basal Metabolic Rate (BMR) Calculator</h2>
+      <form action="/bmr" method="POST">
+          <label><input type="checkbox" id="check" name="check" style="margin-right: 10px;">Store these values for dashboard?</label><br>
+
+          
+        <label style="padding-right: 20px; color: black;" id="heading1" for="weight">Weight:</label>
+        <input type="text3" id="fweight" name="Weight" placeholder="">
+        <label style="padding-right: 20px;"></label>
+        <select id="drop" name="option1">
+          <option value="Pounds">Pounds (lb)</option>
+          <option value="kilograms">Kilograms (Kg)</option>
+        </select></br>
+
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Height">Height:</label>
+        <input type="text3" id="fheight" name="Height" placeholder=""> cm 
+
+        <label style="padding-right: 20px;"></label>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Age">Age:</label>
+        <input type="text3" id="fage" name="Age" placeholder="">
+          
+          
+        <br><br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="male"> Male </label>  
+        
+        <input type="radio" id="female" name="gender" value="Female">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="female"> Female </label><br>
+
+        <br>
+
+        <p><button class="btn btn-primary" id="heading1" readonly type="submit" value="Calculate">Calculate</button> </p>
+
+        <!--BMR-->
+        <label style="padding-right: 20px; color: black;" id="heading1" for="outcome">BMR: </label>
+        <input type="text3" id="outcome" style="background-color: #FFFFFF; width: 15%; text-align: center; border: none;" readonly name="outcome" placeholder="" value="{{m}}"> Calories/day
+
+   
+               
+      </form>
+    </div>
+</div>
+
+
+
+
+<div id="BFP" class="tabcontent">
+  
+
+  <div class="Calculator3" id="rcorners3" style="background-color: #FFFFFF;">
+      <h2 style="padding-bottom: 15px;" id="heading">Body Fat Percentage Calculator</h2>
+      <form action="/bfp" method="POST">
+          <label><input type="checkbox" id="check" name="check" style="margin-right: 10px;">Store these values for dashboard?</label><br>
+
+          
+        <label style="padding-right: 20px; color: black;" id="heading1" for="weight">Weight:</label>
+        <input type="text3" id="fweight" name="Weight" placeholder="">
+        <label style="padding-right: 20px;"></label>
+        <select id="drop" name="option1">
+          <option value="Pounds">Pounds (lb)</option>
+          <option value="kilograms">Kilograms (Kg)</option>
+        </select></br>
+
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Height">Height:</label>
+        <input type="text3" id="fheight" name="Height" placeholder=""> cm 
+
+        <label style="padding-right: 20px;"></label>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Age">Age:</label>
+        <input type="text3" id="fage" name="Age" placeholder="">
+          
+
+        <br><br>
+
+        <label style="padding-right: 20px; color: black;" id="heading1" for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Male"> Male </label>  
+        
+        <input type="radio" id="female" name="gender" value="Female">
+        <label style="padding-right: 20px; color: black;" id="heading1" for="Female"> Female </label><br>
+
+        <br>
+
+        <p><button class="btn btn-primary" id="heading1" readonly type="submit" value="Calculate">Calculate</button> </p>
+
+        <!--BFP-->
+        <label style="padding-right: 20px; color: black;" id="heading1" for="outcome">Body Fat: </label>
+        <input type="text3" id="outcome" style="background-color: #FFFFFF; width: 15%; text-align: center; border: none;" readonly name="outcome" placeholder="" value="{{n}}"> %
+
+   
+               
+      </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+
+
+<script>
+function openTab(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
+
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='js.cookie.js')}}"></script>
+  <script src="{{url_for('static',filename='jquery.scrollbar.min.js')}}"></script>
+  <script src="{{url_for('static',filename='jquery-scrollLock.min.js')}}"></script>
+  <!-- Optional JS -->
+  <script src="{{url_for('static',filename='Chart.min.js')}}"></script>
+  <script src="{{url_for('static',filename='Chart.extension.js')}}"></script>
+  <!-- Argon JS -->
+  <script src="{{url_for('static',filename='argon.js')}}"></script>
+</body>
+<script>
+  function calc()
+{
+  if (document.getElementById('check').checked) 
+  {
+      function myFunction() { 
+            var x =  document.getElementById("fweight").value; 
+            
+            document.getElementById("demo").innerHTML = x; 
+        } 
+  } 
+</script>
+
+<script>
+  function openSlideMenu(){
+    document.getElementById('meenu').style.width = '250px';
+    document.getElementById('main').style.marginLeft = '250px';
+  }
+  function closeSlideMenu(){
+    document.getElementById('meenu').style.width = '0';
+    document.getElementById('main').style.marginLeft = '0';
+  }
+
+  $(document).ready(function() {
+  var trigger = $('.hamburger'),
+    overlay = $('.overlay'),
+    isClosed = true;
+
+  trigger.click(function() {
+    hamburger_cross();
+  });
+
+  function hamburger_cross() {
+
+    if (isClosed == true) {
+      //overlay.hide();
+      trigger.removeClass('is-open');
+      trigger.addClass('is-closed');
+      isClosed = false;
+    } else {
+      //overlay.show();
+      trigger.removeClass('is-closed');
+      trigger.addClass('is-open');
+      isClosed = true;
+    }
+  }
+
+  $('[data-toggle="offcanvas"]').click(function() {
+    $('#wrapper').toggleClass('toggled');
+  });
+});
+</script>
+</html>

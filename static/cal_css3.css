@@ -1,0 +1,218 @@
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #FFFFFF;
+  background-color: #FFFFFF;
+  float: center;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  width: 10%;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #5E72E4;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #5E72E4;
+  color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #FFFFFF;
+  border-top: none;
+}
+
+
+
+/* Style inputs */
+      input[type=text], select {
+      width: 15%;
+      background-color: #fff;
+      padding: 5px 5px;
+      margin: 8px 0;
+      display: inline-block;
+
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: #CFCFCF;
+
+
+    }
+
+    /* Style the submit button */
+    input[type=submit] {
+      width: 37%;
+      background-color: #FFFFFF;
+      color: black;
+      padding: 14px 20px;
+      margin: 8px 70px;
+      border-style: groove;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+  
+
+    #heading1{
+      font-size: medium;
+      font-family: Arial, Helvetica, sans-serif;
+      font-variant: normal;
+      
+    }
+
+    .Calculator{
+      
+      padding-left: 4%;
+      padding-top: 1%;
+
+      margin: auto;
+  width: 50%;
+  border: 3px ;
+  padding: 10px;
+
+
+    }
+
+    #rcorners1 {
+      border-radius: 15px 50px 30px;
+      background: #FFFFFF;
+      padding: 20px;
+      width: 75%;
+
+      
+    }
+
+    #drop{
+      width: 40%;
+    }
+    #outcome{
+      width: 27%;
+    }
+
+
+
+
+
+/********************************************BMI************************************************/
+
+
+
+.Calculator2{
+      
+      padding-left: 4%;
+      padding-top: 1%;
+
+      margin: auto;
+  width: 50%;
+  border: 3px;
+  padding: 10px;
+}
+
+#rcorners2 {
+      border-radius: 15px 50px 30px;
+      background: #FFFFFF;
+      padding: 10px;
+      width: 75%;
+
+      
+    }
+
+
+input[type=submit2] {
+      width: 37%;
+      background-color: #FFFFFF;
+      color: black;
+      padding: 14px 20px;
+      margin: 8px 70px;
+      border-style: groove;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    
+
+    input[type=text2], select {
+      width: 15%;
+      background-color: #FFFFFF;
+      padding: 5px 5px;
+      margin: 8px 0;
+      display: inline-block;
+
+        outline: 0;
+  border-width: 0 0 2px;
+  border-color: #CFCFCF;
+    }
+
+
+
+
+
+
+/*********************************************Macro*****************************************************/
+
+
+
+.Calculator3{
+      
+      padding-left: 4%;
+      padding-top: 1%;
+
+      margin: auto;
+  width: 50%;
+  border: 3px;
+  padding: 10px;
+}
+
+#rcorners3 {
+      border-radius: 15px 50px 30px;
+      background: #FFFFFF;
+      padding: 20px;
+      width: 75%;
+
+      
+    }
+
+
+input[type=submit3] {
+      width: 37%;
+      background-color: #FFFFFF;
+      color: black;
+      padding: 14px 20px;
+      margin: 8px 70px;
+      border-style: groove;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+
+    input[type=text3], select {
+      width: 15%;
+      padding: 5px 5px;
+      background-color: #FFFFFF;
+      margin: 8px 0;
+      display: inline-block;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: #CFCFCF;
+
+    }
+
+    select[id=drop1]{
+      padding:16px 51px 4px 51px;
+      margin-left: 300px;
+    }

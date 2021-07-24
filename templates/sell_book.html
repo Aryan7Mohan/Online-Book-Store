@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Sell Book</title>
+
+  <link rel="icon" href="{{url_for('static',filename='logo_icon.png')}}" type="image/icon type">     <!-- title icon -->
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{url_for('static',filename='nucleo.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>                                                       <!-- FOR CHART.JS   -->
+  <link rel="stylesheet" href="{{url_for('static',filename='all.min.css')}}" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="{{url_for('static',filename='argon_final.css')}}" type="text/css">
+  <!--  NEW ICONS  -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{url_for('static',filename='pe-icon-7-stroke.css')}}" rel="stylesheet" />
+
+
+<style type="text/css">
+
+  nav{
+    flex: 1;
+    text-align: right;
+  }
+  nav ul{
+    display: inline-block;
+    list-style-type: none;
+  }
+  
+  nav ul li{
+    display: inline-block;
+    margin-right: 20px;
+    transition: transform 0.2s;
+    
+  }
+
+  nav ul li:hover{
+    display: inline-block;
+    margin-right: 20px;
+    transform: translateY(-3px);
+    
+  }
+
+  nav .cart{
+    transition: transform 0.1s;
+  }
+
+  nav .cart:hover{
+    transform: translateY(-3px);
+  }
+
+  a{
+    text-decoration: none;
+    color: #555;
+  }
+
+  a:hover{
+    text-decoration: none;
+    color: #555;
+  }
+
+  p{
+    color: #555;
+  }
+
+  .container{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .col2{
+    flex-basis: 50%;
+    min-width: 300px;
+  }
+  .col2 img{
+    max-width: 100%;
+    padding: 50px 0;
+  }
+  .col2 h1{
+    font-size: 40px;
+    line-height: 60px;
+    margin: 25px 0;
+  }
+  .btn{
+    display: inline-block;
+    background: #0B8A72;
+    color: #fff;
+    padding: 8px 25px;
+    margin: 30px 0;
+    border-radius: 20px;
+    transition: background 0.5s;
+  }
+  .btn:hover{
+    background: #42A491;
+    
+    color: #fff;
+  }
+
+  .header{
+    background: linear-gradient(#fff, #88C6BA);
+  }
+
+  .header .row{
+    margin-top: 30px;
+  }
+
+  .categories, .Featured{
+    margin: 70px 0;
+  }
+
+  .col3{
+
+    flex-basis: 30%;
+    min-width: 250px;
+    margin-bottom: 30px;
+    transition: transform 0.2s;
+
+  }
+
+  .col3 img{
+    width: 100%;
+    height: 180px;
+  }
+
+  .small-container{
+    max-width: 1080px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+  }
+
+  .col4{
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform 0.2s;
+  }
+
+  .col4 h4{
+    padding-top: 20px;
+  }
+
+  .col4 img{
+    /*-- used to be "width: 100%;" but it messed up width of a pic  --*/
+    height: 320px;
+  }
+
+  .title{
+    text-align: left;
+    margin: 0 auto 20px;
+    position: relative;
+    line-height: 60px;
+    color: #555;
+    padding-bottom: 1px;
+  }
+
+  .title::after{
+    
+    content: '';
+    background: #0B8A72;
+    width: 250px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 12%;
+    transform: translateX(-50%);
+  }
+
+
+  .col4 h4{
+    color: #555;
+    
+
+  }
+
+  .col3 h4{
+    color: #555;
+    text-align: center;
+    padding-top: 20px;
+  
+
+  }
+
+  .col3:hover{
+    transform: translateY(-5px);
+  }
+
+  .col4 p{
+    font-size: 14px;
+  }
+
+  .col4:hover{
+    transform: translateY(-5px);
+  }
+
+
+  /* ~~~~~~~~~~~~~~offer~~~~~~~~~~~~~~~**/
+
+  .offer{
+    background: radial-gradient(#fff, #ffd6d6);
+    margin-top: 30px;
+    padding: 30px 0;
+  }
+
+  .col2 .offer-img{
+    padding: 50px;
+  }
+
+  small{
+    color: #555;
+  }
+
+
+
+  /* footer */
+
+  .footer-col1, .footer-col2, .footer-col3{
+    min-width: 250px;
+    margin-bottom: 20px;
+
+  }
+
+  .footer-col1{
+    flex-basis: 30%;
+  }
+
+  .footer-col2{
+    flex: 1;
+    text-align: center;
+  }
+
+  .footer-col2 img{
+    width: 180px;
+    margin-bottom: 20px;
+  }
+
+  .footer-col3{
+    flex-basis: 24%;
+    text-align: center;
+  }
+
+  ul{
+    list-style-type: none;
+    text-align: center;
+  }
+
+  .menu-icon{
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+  }
+
+  /*----------------media query for menu ---------*/
+
+  @media only screen and (max-width: 800px){
+    nav ul{
+      position: absolute;
+      top: 70px;
+      left: 0;
+      background: #333;
+      width: 100%;
+      overflow: hidden;
+      transition: max-height 0.2s;
+    }
+
+    nav ul li{
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        
+  
+    }
+
+ 
+
+    nav ul li a{
+      color: white;
+
+    }
+
+   
+
+    .menu-icon{
+      display: inline-block;
+      cursor: pointer;
+    }
+
+  }
+
+
+
+   /*----------------media query for less than 600 screen size ---------*/
+
+  @media only screen and (max-width: 600px){
+    .row{
+    text-align: center;
+
+    }
+
+    .col2, .col3, .col4{
+    flex-basis: 100%;
+    
+    }
+
+
+    .col3 img{
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    }
+
+    .col4 img{
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    }
+
+
+  }
+
+
+button:focus {outline:0;}
+
+ </style>
+
+
+
+
+
+
+<style>
+  /* for dropdown */
+
+
+
+
+.dropdown-content {
+  margin-top: 1px;
+  margin-left: -20px;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #A8D6CD;
+  border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  border-radius: 5px;
+}
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  
+  <div class="container">
+
+    <div class="navbar">
+
+      <div class="logo">
+
+          <img src="{{url_for('static',filename='logo.png')}}" width="125px">
+
+      </div>
+
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="/dashboard">Home</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/search">Search</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li>
+            <div class="dropdown">
+
+            <button style="background: transparent; box-shadow: 0px 0px 0px transparent; border: 0px solid transparent; text-shadow: 0px 0px 0px transparent; ">Account</button>
+
+              <div class="dropdown-content">
+                <a href="/sell_book">Sell Book</a>
+                <a href={{url_for('logout')}}>Logout</a>
+                
+              </div>
+
+            </div>
+
+          </li>
+
+          <li>
+            <a href={{url_for('cart')}}><img src="{{url_for('static',filename='cart.png')}}" width="30px" height="30px" class="cart"></a>        <!-- cart icon -->
+          </li>
+  
+
+
+
+        </ul>
+
+        
+        <img src="{{url_for('static',filename='menu_icon.png')}}" width="30px" height="30px" class="menu-icon" onclick="menutoggle()">     <!-- menu icon -->
+      </nav>
+    
+    
+    </div>
+
+    
+
+  </div>  <!-- container -->
+
+
+
+
+<!--                 SELL FORM             -->
+
+
+<div class="Featured">
+  <div class="small-container">
+
+    <div class="title">
+      <h2>Sell Form</h2>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <h3>Submit this form to upload book!</h3>
+    </div>
+
+    
+    <div class="row">
+
+
+      <div class="col">
+
+
+
+        <form action="/sell_book" method="POST" enctype="multipart/form-data">   
+      
+        <label style="padding-right: 20px; display: inline;"><b>Book Name: </b></label>
+        <input type="text" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" name="book_name">
+
+        <br>
+        
+        <label style="padding-right: 20px; display: inline;"><b>Book Price: </b></label>
+        <input type="text" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" name="book_price">
+
+        <br>
+
+        <label style="padding-right: 20px; display: inline;"><b>Book Description: </b></label>
+        <input type="text" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" name="book_description">
+
+        <br>
+      
+        <label style="padding-right: 20px; display: inline;"><b>Book Author: </b></label>
+        <input type="text" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" name="book_author">
+
+        <br>
+
+        <label style="padding-right: 20px; display: inline;"><b>Book Image Link: </b></label>
+        <input type="text" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" name="book_img_link">
+         
+      
+
+      <br>
+
+    <button type="submit" class="btn btn-primary" name="bt2">Submit Form</button>
+
+      </form>
+
+  
+      </div>
+ 
+      
+    </div>  <!--row-->
+
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #FF523B">{{message}}</h3>
+      <p>*Do not reload page!</p>
+    </div>
+
+  </div><!--small-container-->
+
+</div><!--Featured-->
+
+
+
+
+
+<!--footer-->
+
+<div class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="footer-col1">
+        <h3>Support our WebApp</h3>
+        <p>Consider donating to help our growth!</p>
+        <small>Contact Us</small>
+      </div>
+
+      <div class="footer-col2">
+        <img src="{{url_for('static',filename='logo.png')}}">
+        <p>Our purpose is to sustainably make the<br> pleasure and benefits of Books Accessible to the many.</p>
+      </div>
+
+      <div class="footer-col3">
+        <h3 style="margin-right: -35px;">Useful Links</h3>
+        <ul>
+          <li>Return Policy</li>
+          <li>About Us</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- js for toggle menu -->
+<script >
+  var MenuItems = document.getElementById("MenuItems");
+
+  MenuItems.style.maxHeight = "0px";
+
+  function menutoggle(){
+    if(MenuItems.style.maxHeight == "0px")
+    {
+      MenuItems.style.maxHeight = "200px";
+
+    }
+    else 
+    {
+      MenuItems.style.maxHeight = "0px";
+    }
+  }
+</script>
+
+
+
+  
+</body>
+
+</html>

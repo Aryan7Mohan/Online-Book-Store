@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+
+<div class="Featured">
+  <div class="small-container">
+
+    <div class="title">
+      <h2>Search</h2>
+    </div>
+    
+    
+    <div class="row">
+
+
+      <div class="col" style="text-align: center;">
+    
+        
+          
+
+          <form method="POST" action='/result'>
+            
+            <label style="padding-right: 20px; display: inline;"><b>Book Title: </b></label>
+            <input type="text" name = "title" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px; border-radius: 20px;" > <br>
+            
+            <!--<label style="padding-right: 20px; display: inline;"><b>Author Name: </b></label>
+            <input type="text" name = "author" class="form-control" style="width: 30%; height: 35px; display: inline; margin-bottom: 10px;" > <br>   -->
+
+            <button class="btn btn-primary" type="submit">Search!</button>
+          </form>
+
+
+
+        
+
+
+
+    </div>
+ 
+      
+    </div>  <!--row-->
+
+
+
+  </div><!--small-container-->
+
+</div><!--Featured-->
+      
+{% endblock content %}

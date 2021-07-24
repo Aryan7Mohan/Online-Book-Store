@@ -1,0 +1,74 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!--      FOR THE SIDE BAR AND DESIGN             -->
+<meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="{{url_for('static',filename='favicon.ico')}}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+
+    <!--================my links===================-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+    <!--===========================================-->
+
+
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{{url_for('static',filename='bootstrap.min.css')}}" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="{{url_for('static',filename='animate.min.css')}}" rel="stylesheet" />
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{{url_for('static',filename='light-bootstrap-dashboard.css')}}" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{{url_for('static',filename='demo.css')}}" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="{{url_for('static',filename='pe-icon-7-stroke.css')}}" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="path/to/pe-icon-7-stroke/css/pe-icon-7-stroke.css"> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<title>Login</title>
+
+    <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+<style>
+    * {
+      font-family: sans-serif;}
+</style>
+</head>
+<body>
+    <div class="container">
+
+      <form class="form-signin" method="POST" action="/login">
+        <h2 class="form-signin-heading" style="width: 200%;">MTC Admin Sign-In</h2>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
+        {{ wtf.form_field(form.remember) }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+</body>
+</html>
